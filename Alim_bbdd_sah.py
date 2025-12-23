@@ -1,0 +1,52 @@
+from sqlalchemy import create_engine
+import pymysql
+import pandas as pd
+
+def sql_minemas_e(sql):
+    dbConecction = pymysql.connect(host = 'endurorecambios.com',user='guillermo',passwd = 'nI^r4i51',db='nuevaendurorecambios')
+    cur = dbConecction.cursor()
+    cur.execute(sql)
+    dbConecction.commit()
+    dbConecction.close()
+
+def table_to_df_e(sql):
+    dbConecction = pymysql.connect(host = 'endurorecambios.com',user='guillermo',passwd = 'nI^r4i51',db='nuevaendurorecambios')
+    frame = pd.read_sql(sql, dbConecction)
+    dbConecction.close()
+    return frame
+
+def sql_minemas_r(sql):
+    dbConecction = pymysql.connect(host = 'endurorecambios.com',user='Minemas_R',passwd = 'b1EppZu9bX6vhvMf',db='Minemas_R')
+    cur = dbConecction.cursor()
+    cur.execute(sql)
+    dbConecction.commit()
+    dbConecction.close()
+
+def table_to_df(sql):
+    sqlEngine = create_engine('mysql+pymysql://Minemas_R:b1EppZu9bX6vhvMf@endurorecambios.com/Minemas_R')
+    dbConnection = sqlEngine.connect()
+    frame = pd.read_sql(sql, dbConnection);
+    dbConnection.close()
+    return frame
+
+def create_temp_table(sql,destino):
+    sqlEngine = create_engine('mysql+pymysql://Minemas_R:b1EppZu9bX6vhvMf@endurorecambios.com/Minemas_R')
+    dbConnection = sqlEngine.connect()
+    frame = pd.read_sql(sql, dbConnection)
+    frame.to_sql(name=destino, con=dbConnection, if_exists='replace', index=False)
+    print ("Tabla creada "+str(destino))
+    dbConnection.close()
+
+def carga_tarifa_bbdd(dataframe,tabla):
+    sqlEngine = create_engine('mysql+pymysql://Minemas_R:b1EppZu9bX6vhvMf@endurorecambios.com/Minemas_R')
+    dbConnection = sqlEngine.connect()
+    dataframe.to_sql(name=tabla, con=dbConnection, if_exists='replace', index=False)
+    print ("actualizado")
+    dbConnection.close()
+    
+def carga_tarifa_bbdd_e(dataframe,tabla):
+    sqlEngine = create_engine('mysql+pymysql://guillermo:nI^r4i51@endurorecambios.com/nuevaendurorecambios')
+    dbConnection = sqlEngine.connect()
+    dataframe.to_sql(name=tabla, con=dbConnection, if_exists='replace', index=True)
+    print ("actualizado")
+    dbConnection.close()

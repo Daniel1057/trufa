@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="enduro">
+    <file>endurorecambios.png</file>
+  </qresource>
+  <qresource prefix="brp">
+    <file>BRP_inc_logo.svg.png</file>
+  </qresource>
+  <qresource prefix="beta_1">
+    <file>Beta-Logo.png</file>
+  </qresource>
+</RCC>

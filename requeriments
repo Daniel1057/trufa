@@ -1,0 +1,45 @@
+import pandas as pd
+import pandas_datareader.data as web
+import base64
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
+import os
+from docx.enum.section import WD_ORIENTATION
+import docx
+import cv2
+from sqlalchemy import create_engine
+import pymysql
+import prestaweb
+from sqlalchemy import create_engine
+import pymysql
+import pandas as pd
+import sys
+import pandas as pd
+import os
+from sqlalchemy import create_engine
+import pymysql
+from __future__ import print_function
+
+import pandas as pd
+from prestapyt import PrestaShopWebServiceDict
+from xml.etree import ElementTree
+import datafrm
+import beta
+import brp
+import tar_brp
+from menu import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import QFileDialog
+import sys
+import subprocess
+from sqlalchemy import create_engine
+import pymysql
+import pandas as pd
+import sys
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+		if self.Activa_beta.isChecked():
+			fichero_beta = self.ruta_fichero_beta.text()
+			generar_dataframes(fichero_beta, inventario)
